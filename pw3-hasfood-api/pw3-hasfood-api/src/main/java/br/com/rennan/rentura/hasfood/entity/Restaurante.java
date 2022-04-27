@@ -1,9 +1,12 @@
 package br.com.rennan.rentura.hasfood.entity;
 
-import java.util.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,8 +23,9 @@ import lombok.Setter;
 public class Restaurante {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_RESTAURANTE")
-	private long id;
+	private Long id;
 	
 	@Column(name = "TX_CNPJ")
 	private String cnpj;
@@ -33,6 +37,7 @@ public class Restaurante {
 	private String descricao;
 	
 	@Column(name = "DT_APROVACAO")
+	@Enumerated
 	private DiaSemanaEnum aprovacao;
 	
 	@Column(name = "VLR_ENTREGA")
@@ -46,6 +51,6 @@ public class Restaurante {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_COZINHA")
-	private long id_cozinha;
+	private TipoCozinha id_cozinha;
 
 }
